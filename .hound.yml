@@ -1,0 +1,11 @@
+ruby:
+  enabled: true
+
+eslint:
+  enabled: true
+
+jshint:
+  enabled: false
+
+rubocop:
+  config_file: .rubocop.yml
