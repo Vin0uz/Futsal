@@ -27,5 +27,6 @@ group :test do
   gem "capybara"
   gem "rspec-rails"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
   gem "webdrivers"
 end
