@@ -2,4 +2,8 @@ language: ruby
 rvm:
  - 2.7.1
 cache: bundler
+services:
+  - postgresql
 
+before_script:
+  - psql -c 'create database futsal_test;' -U postgres
