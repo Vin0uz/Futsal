@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     root to: "goals#index"
   end
 
-  root "home#show"
+  root "welcome#home"
 end
