@@ -25,39 +25,39 @@ class GameDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = %i[
-  goals
-  home_team
-  away_team
-  id
+  COLLECTION_ATTRIBUTES = [
+    "goals",
+    "home_team",
+    "away_team",
+    "id",
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = %i[
-  goals
-  home_team
-  away_team
-  id
-  matchweek
-  date
-  home_team_id
-  away_team_id
-  created_at
-  updated_at
+  SHOW_PAGE_ATTRIBUTES = [
+    "goals",
+    "home_team",
+    "away_team",
+    "id",
+    "matchweek",
+    "date",
+    "home_team_id",
+    "away_team_id",
+    "created_at",
+    "updated_at",
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = %i[
-  goals
-  home_team
-  away_team
-  matchweek
-  date
-  home_team_id
-  away_team_id
+  FORM_ATTRIBUTES = [
+    "goals",
+    "home_team",
+    "away_team",
+    "matchweek",
+    "date",
+    "home_team_id",
+    "away_team_id",
   ].freeze
 
   # COLLECTION_FILTERS
