@@ -8,12 +8,16 @@ export default class extends Controller {
   connect(){
     var ctx = document.getElementById(this.data.get("canvasId")).getContext('2d');
     var labels = this.labels
-    var length = labels.length
     var myChart = new Chart(ctx, {
       type: this.data.get("chartType"),
       data: {
         labels: this.labels,
-        datasets: this.datasets
+        datasets: [{
+          data: this.dataChart,
+          backgroundColor: this.colors,
+          borderColor: this.borderColors,
+          borderWidth: 1
+        }]
       },
       options: {
         scales: {
@@ -31,39 +35,8 @@ export default class extends Controller {
     return JSON.parse(this.labelsTarget.dataset.value)
   }
 
-  get datasets() {
-    var datasets = []
-    var hash = {}
-    var data = this.dataChart
-    const COLORS = this.colors
-    const BORDER_COLORS = this.borderColors
-    this.dataset_labels.forEach(function (action_type, j){
-      hash = {}
-      hash.label = action_type
-      hash.data = data[j]
-      hash.backgroundColor = COLORS[j]
-      hash.borderColor = BORDER_COLORS[j]
-      hash.borderWidth = 1
-      datasets.push(hash)
-    });
-
-    return datasets
-  }
-
-  get dataset_labels(){
-    return JSON.parse(this.datasetLabelsTarget.dataset.value)
-  }
-
   get dataChart(){
     return JSON.parse(this.dataTarget.dataset.value)
-  }
-
-  colorArray(color, count) {
-    var bgColors = [];
-    for (var i = 0; i < count; i++) {
-      bgColors.push(color);
-    }
-    return bgColors
   }
 
   get colors(){
