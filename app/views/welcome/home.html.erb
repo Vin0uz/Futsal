@@ -1,5 +1,19 @@
 <h1> Home </h1>
-<canvas id="myChart"></canvas>
+<div class= "w-1/2">
+  <canvas id="chart1"></canvas>
+</div>
+<div class= "w-1/2">
+  <canvas id="chart2"></canvas>
+</div>
 
-<div data-controller="home">
+<div data-controller="home" data-home-canvas-id="chart1">
+  <div class="hidden" data-target="home.labels" data-value="<%= @chart1[:labels] %>"></div>
+  <div class="hidden" data-target="home.datasetLabels" data-value="<%= @chart1[:attributes] %>"></div>
+  <div class="hidden" data-target="home.data" data-value="<%= @chart1[:data] %>"></div>
+</div>
+
+<div data-controller="home" data-home-canvas-id="chart2">
+  <div class="hidden" data-target="home.labels" data-value="<%= @chart2[:labels] %>"></div>
+  <div class="hidden" data-target="home.datasetLabels" data-value="<%= @chart2[:attributes] %>"></div>
+  <div class="hidden" data-target="home.data" data-value="<%= @chart2[:data] %>"></div>
 </div>
