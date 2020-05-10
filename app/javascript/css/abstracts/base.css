@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-100 font-sans leading-normal tracking-normal;
+}
