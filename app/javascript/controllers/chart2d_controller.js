@@ -1,4 +1,3 @@
-// hello_controller.js
 import { Controller } from "stimulus"
 import Chart from "chart.js"
 
