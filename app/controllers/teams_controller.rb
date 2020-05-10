@@ -1,5 +1,5 @@
-class WelcomeController < ApplicationController
-  def home
+class TeamsController < ApplicationController
+  def index
     games = Game.all.pluck(:matchweek).uniq
     action_types = Goal.all.pluck(:action_type).uniq
     teams = Team.all.pluck(:acronym).uniq
@@ -25,7 +25,7 @@ class WelcomeController < ApplicationController
       query_results = Goal.group(:action_type).count
     end
 
-    if type == "goals_action_matchweek" || type == "goals_action_team"
+    if ["goals_action_matchweek", "goals_action_team"].include? type
       formatted_response = transform_query_group(query_results)
 
       attributes.each do |attribute|
@@ -35,7 +35,7 @@ class WelcomeController < ApplicationController
         end
         chart_data[:data] << attribute_arr
       end
-    elsif type == "pie_team_goals" || type == "pie_action_goals"
+    elsif ["pie_team_goals", "pie_action_goals"].include? type
       labels.each do |label|
         chart_data[:data] << (query_results[label] || 0)
       end

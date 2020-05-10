@@ -1,0 +1,39 @@
+<h1> Équipes </h1>
+<div class= "w-1/2">
+  <canvas id="chart1"></canvas>
+</div>
+<div class= "w-1/2">
+  <canvas id="chart2"></canvas>
+</div>
+
+<div>
+  <canvas id="pie-chart1"></canvas>
+</div>
+
+</div>
+  <canvas id="pie-chart2"></canvas>
+</div>
+
+<div data-controller="chart2d" data-chart2d-canvas-id="chart1" data-chart2d-chart-type="bar">
+  <div class="hidden" data-target="chart2d.labels" data-value="<%= @chart1[:labels] %>"></div>
+  <div class="hidden" data-target="chart2d.datasetLabels" data-value="<%= @chart1[:attributes] %>"></div>
+  <div class="hidden" data-target="chart2d.data" data-value="<%= @chart1[:data] %>"></div>
+</div>
+
+<div data-controller="chart2d" data-chart2d-canvas-id="chart2" data-chart2d-chart-type="bar">
+  <div class="hidden" data-target="chart2d.labels" data-value="<%= @chart2[:labels] %>"></div>
+  <div class="hidden" data-target="chart2d.datasetLabels" data-value="<%= @chart2[:attributes] %>"></div>
+  <div class="hidden" data-target="chart2d.data" data-value="<%= @chart2[:data] %>"></div>
+</div>
+
+<div data-controller="chart" data-chart-canvas-id="pie-chart1" data-chart-chart-type="polarArea">
+  <div class="hidden" data-target="chart.labels" data-value="<%= @pie_chart1[:labels] %>"></div>
+  <div class="hidden" data-target="chart.datasetLabels" data-value="<%= @pie_chart1[:attributes] %>"></div>
+  <div class="hidden" data-target="chart.data" data-value="<%= @pie_chart1[:data] %>"></div>
+</div>
+
+<div data-controller="chart" data-chart-canvas-id="pie-chart2" data-chart-chart-type="polarArea">
+  <div class="hidden" data-target="chart.labels" data-value="<%= @pie_chart2[:labels] %>"></div>
+  <div class="hidden" data-target="chart.datasetLabels" data-value="<%= @pie_chart2[:attributes] %>"></div>
+  <div class="hidden" data-target="chart.data" data-value="<%= @pie_chart2[:data] %>"></div>
+</div>

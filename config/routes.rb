@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     root to: "goals#index"
   end
 
-  root "welcome#home"
+  root "teams#index"
+
+  resources :teams, only: :index
 end
