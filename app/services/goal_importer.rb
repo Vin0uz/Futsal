@@ -22,7 +22,7 @@ class GoalImporter
         end
 
         player = Player.find_or_create_by!(team: team, name: row[PLAYER])
-        Goal.find_or_create_by!(game: game, scorer: player, action_type: row[TYPE])
+        Goal.find_or_create_by!(game: game, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
       end
       puts "-"
     rescue StandardError => error
