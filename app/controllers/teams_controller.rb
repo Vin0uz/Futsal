@@ -7,9 +7,18 @@ class TeamsController < ApplicationController
     @chart2 = build_chart_data(labels: teams, attributes: action_types, type: "goals_action_team")
     @pie_chart1 = build_chart_data(labels: teams, attributes: action_types, type: "pie_team_goals")
     @pie_chart2 = build_chart_data(labels: action_types, attributes: teams, type: "pie_action_goals")
+    @cards_data = build_cards_data
   end
 
   private
+
+  def build_cards_data
+    {
+      games_count: Game.count,
+      best_attack: Goal.joins(scorer: :team).group("teams.acronym").order("count_id desc").count(:id).first,
+      best_scorer: Goal.joins(:scorer).group("players.name").order("count_id desc").count(:id).first,
+    }
+  end
 
   def build_chart_data(labels:, attributes:, type:)
     chart_data = {labels: labels, attributes: attributes, data: nil}
