@@ -12,6 +12,6 @@ export default class extends ChartController {
   }
 
   get chartType(){
-    return "polarArea"
+    return "doughnut"
   }
 }
