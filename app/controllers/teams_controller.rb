@@ -5,9 +5,20 @@ class TeamsController < ApplicationController
     teams = Team.all.pluck(:acronym).uniq
     @chart1 = build_chart_data(labels: games, attributes: action_types, type: "goals_action_matchweek")
     @chart2 = build_chart_data(labels: teams, attributes: action_types, type: "goals_action_team")
+    @cards_data = build_cards_data
+  end
+
+  def show
+    games = Game.all.pluck(:matchweek).uniq
+    action_types = Goal.all.pluck(:action_type).uniq
+    teams = Team.all.pluck(:acronym).uniq
+    @chart1 = build_chart_data(labels: games, attributes: action_types, type: "goals_action_matchweek")
+    @chart2 = build_chart_data(labels: teams, attributes: action_types, type: "goals_action_team")
     @pie_chart1 = build_chart_data(labels: teams, attributes: action_types, type: "pie_team_goals")
     @pie_chart2 = build_chart_data(labels: action_types, attributes: teams, type: "pie_action_goals")
     @cards_data = build_cards_data
+
+    render json: { chart: @pie_chart1 }
   end
 
   private

@@ -1,23 +1,20 @@
 import { Controller } from "stimulus"
 import Chart from "chart.js"
+import Rails from "@rails/ujs";
 
 export default class extends Controller {
   static targets = [ "labels", "data", "datasetLabels" ]
 
   connect(){
+    this.initChart()
+    this.refreshChart()
+  }
+
+  initChart() {
     var ctx = document.getElementById(this.data.get("canvasId")).getContext('2d');
-    var labels = this.labels
-    var myChart = new Chart(ctx, {
+    this.chart = new Chart(ctx, {
       type: this.data.get("chartType"),
-      data: {
-        labels: this.labels,
-        datasets: [{
-          data: this.dataChart,
-          backgroundColor: this.colors,
-          borderColor: this.borderColors,
-          borderWidth: 1
-        }]
-      },
+      data: {},
       options: {
         scales: {
           yAxes: [{
@@ -30,12 +27,28 @@ export default class extends Controller {
     });
   }
 
-  get labels() {
-    return JSON.parse(this.labelsTarget.dataset.value)
+  refreshChart() {
+    fetch("teams/1")
+    .then(response => response.json())
+    .then(chartData => {
+      this.chart.config.data = this.refreshChartData(chartData)
+      this.chart.update();
+    })
   }
 
-  get dataChart(){
-    return JSON.parse(this.dataTarget.dataset.value)
+  refreshChartData(chartData){
+    console.log(chartData)
+    var labels = chartData.chart.labels
+    var dataset = chartData.chart.data
+    return {
+      labels: labels,
+      datasets: [{
+        data: dataset,
+        backgroundColor: this.colors,
+        borderColor: this.borderColors,
+        borderWidth: 1
+      }]
+    }
   }
 
   get colors(){
