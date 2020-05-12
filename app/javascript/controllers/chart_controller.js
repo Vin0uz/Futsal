@@ -20,11 +20,6 @@ export default class extends Controller {
       data: {},
       options: {
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
         }
       }
     });
@@ -52,47 +47,13 @@ export default class extends Controller {
       datasets: [{
         data: data,
         backgroundColor: this.colors,
-        borderColor: this.borderColors,
-        borderWidth: 1
+        borderColor: "white",
+        borderWidth: 2
       }]
     }
   }
 
   get colors(){
-    return ["rgba(255, 99, 132, 0.5)",
-      "rgba(255, 159, 64, 0.5)",
-      "rgba(255, 205, 86, 0.5)",
-      "rgba(75, 192, 192, 0.5)",
-      "rgba(54, 162, 235, 0.5)",
-      "rgba(153, 102, 255, 0.5)",
-      "rgba(255, 99, 132, 0.5)",
-      "rgba(255, 159, 64, 0.5)",
-      "rgba(255, 205, 86, 0.5)",
-      "rgba(75, 192, 192, 0.5)",
-      "rgba(54, 162, 235, 0.5)",
-      "rgba(153, 102, 255, 0.5)",
-      "rgba(255, 99, 132, 0.5)",
-      "rgba(255, 159, 64, 0.5)",
-      "rgba(255, 205, 86, 0.5)",
-      "rgba(75, 192, 192, 0.5)",
-      "rgba(54, 162, 235, 0.5)",
-      "rgba(153, 102, 255, 0.5)",
-      "rgba(255, 99, 132, 0.5)",
-      "rgba(255, 159, 64, 0.5)",
-      "rgba(255, 205, 86, 0.5)",
-      "rgba(75, 192, 192, 0.5)",
-      "rgba(54, 162, 235, 0.5)",
-      "rgba(153, 102, 255, 0.5)",
-      "rgba(255, 99, 132, 0.5)",
-      "rgba(255, 159, 64, 0.5)",
-      "rgba(255, 205, 86, 0.5)",
-      "rgba(75, 192, 192, 0.5)",
-      "rgba(54, 162, 235, 0.5)",
-      "rgba(153, 102, 255, 0.5)",
-    ]
-  }
-
-  get borderColors(){
     return ["rgba(255, 99, 132, 1)",
       "rgba(255, 159, 64, 1)",
       "rgba(255, 205, 86, 1)",
