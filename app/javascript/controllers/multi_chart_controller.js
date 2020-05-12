@@ -25,7 +25,8 @@ export default class extends Controller {
               beginAtZero: true
             }
           }]
-        }
+        },
+        maintainAspectRatio: false
       }
     });
   }
