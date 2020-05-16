@@ -38,11 +38,12 @@ export default class extends Controller {
 
   refreshChartData(chartData){
     var labels = chartData.labels
-    var dataset = chartData.data
+    var hash_data = chartData.data
+    var data = labels.map(label => hash_data.hasOwnProperty(label) ? hash_data[label] : 0)
     return {
       labels: labels,
       datasets: [{
-        data: dataset,
+        data: data,
         backgroundColor: this.colors,
         borderColor: this.borderColors,
         borderWidth: 1
