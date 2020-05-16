@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Api::GoalsController  do
+describe Api::GoalsController do
   describe "#action_types" do
     it "returns array of all uniq action type values" do
       create(:goal, action_type: "NiceOne")

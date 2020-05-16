@@ -17,16 +17,16 @@ module Api
     private
 
     def add_filters_to_query(query)
-      if team = params[:team].presence
-        query = query.where(teams: {acronym: team})
+      if (team = params[:team].presence)
+        query = query.where(teams: { acronym: team })
       end
 
-      if action_type = params[:action_type].presence
-        query = query.where(goals: {action_type: action_type})
+      if (action_type = params[:action_type].presence)
+        query = query.where(goals: { action_type: action_type })
       end
 
-      if matchweek = params[:matchweek].presence
-        query = query.where(games: {matchweek: matchweek})
+      if (matchweek = params[:matchweek].presence)
+        query = query.where(games: { matchweek: matchweek })
       end
 
       query

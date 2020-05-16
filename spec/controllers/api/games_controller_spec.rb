@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Api::GamesController  do
+describe Api::GamesController do
   describe "#matchweeks" do
     it "returns array of uniq matchweeks values" do
       create(:game, matchweek: "Day 1")

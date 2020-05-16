@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Api::TeamsController  do
+describe Api::TeamsController do
   describe "#index" do
     it "returns json list of all teams" do
       create(:team, name: "Michel", acronym: "MICH")
