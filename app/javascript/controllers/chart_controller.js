@@ -3,7 +3,7 @@ import Chart from "chart.js"
 import Rails from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "labels", "data", "datasetLabels" ]
+  static targets = []
 
   connect(){
     this.initChart()
@@ -28,7 +28,7 @@ export default class extends Controller {
   }
 
   refreshChart() {
-    fetch("teams/1")
+    fetch(`api/${this.type}`)
     .then(response => response.json())
     .then(chartData => {
       this.chart.config.data = this.refreshChartData(chartData)
@@ -37,9 +37,8 @@ export default class extends Controller {
   }
 
   refreshChartData(chartData){
-    console.log(chartData)
-    var labels = chartData.chart.labels
-    var dataset = chartData.chart.data
+    var labels = chartData.labels
+    var dataset = chartData.data
     return {
       labels: labels,
       datasets: [{
@@ -49,6 +48,10 @@ export default class extends Controller {
         borderWidth: 1
       }]
     }
+  }
+
+  get type(){
+    return this.data.get("dataset")
   }
 
   get colors(){
