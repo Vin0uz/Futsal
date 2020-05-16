@@ -9,7 +9,7 @@ module Api
 
     def team_goals
       data = add_filters_to_query(Goal.with_joins).group("teams.acronym").count
-      labels = add_filters_to_query(Team.joins(:home_games, :away_games, players: :goals)).all.pluck(:acronym).uniq
+      labels = add_filters_to_query(Team.left_joins(:home_games, :away_games, players: :goals)).all.pluck(:acronym).uniq
 
       render json: { labels: labels, data: data }
     end
