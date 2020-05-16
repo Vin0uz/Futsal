@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Api::ChartsController  do
+describe Api::ChartsController do
   describe "#action_type_goals" do
     it "returns dataset with goals per action_type" do
       create(:goal, action_type: "attack")
