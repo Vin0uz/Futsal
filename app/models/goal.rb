@@ -4,6 +4,6 @@ class Goal < ApplicationRecord
   belongs_to :game
 
   def self.with_joins
-    self.joins(:game, scorer: :team)
+    self.left_joins(:game, scorer: :team)
   end
 end
