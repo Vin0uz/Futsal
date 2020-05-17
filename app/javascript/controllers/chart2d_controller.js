@@ -57,14 +57,6 @@ export default class extends Controller {
     return JSON.parse(this.dataTarget.dataset.value)
   }
 
-  colorArray(color, count) {
-    var bgColors = [];
-    for (var i = 0; i < count; i++) {
-      bgColors.push(color);
-    }
-    return bgColors
-  }
-
   get colors(){
     return ["rgba(255, 99, 132, 0.5)",
       "rgba(255, 159, 64, 0.5)",
