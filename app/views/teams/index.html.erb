@@ -206,10 +206,7 @@
           </div>
           <div class="p-5">
             <canvas id="chart1"></canvas>
-            <div data-controller="chart2d" data-chart2d-canvas-id="chart1" data-chart2d-chart-type="bar">
-              <div class="hidden" data-target="chart2d.labels" data-value="<%= @chart1[:labels] %>"></div>
-              <div class="hidden" data-target="chart2d.datasetLabels" data-value="<%= @chart1[:attributes] %>"></div>
-              <div class="hidden" data-target="chart2d.data" data-value="<%= @chart1[:data] %>"></div>
+            <div data-controller="multi-charts--goal-action-type-matchweeks" data-multi-charts--goal-action-type-matchweeks-canvas-id="chart1">
             </div>
           </div>
         </div>
@@ -224,10 +221,7 @@
           </div>
           <div class="p-5">
             <canvas id="chart2"></canvas>
-            <div data-controller="chart2d" data-chart2d-canvas-id="chart2" data-chart2d-chart-type="bar">
-              <div class="hidden" data-target="chart2d.labels" data-value="<%= @chart2[:labels] %>"></div>
-              <div class="hidden" data-target="chart2d.datasetLabels" data-value="<%= @chart2[:attributes] %>"></div>
-              <div class="hidden" data-target="chart2d.data" data-value="<%= @chart2[:data] %>"></div>
+            <div data-controller="multi-charts--goal-action-type-teams" data-multi-charts--goal-action-type-teams-canvas-id="chart2">
             </div>
           </div>
         </div>
