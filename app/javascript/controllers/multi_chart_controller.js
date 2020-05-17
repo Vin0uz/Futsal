@@ -1,19 +1,23 @@
 import { Controller } from "stimulus"
 import Chart from "chart.js"
+import Rails from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "labels", "data", "datasetLabels" ]
+  static targets = []
 
   connect(){
+    document.addEventListener("updateCharts", this.refreshChart.bind(this))
+  }
+
+  disconnect(){
+    document.removeEventListener("updateCharts", this.refreshChart.bind(this))
+  }
+
+  initChart(chartType) {
     var ctx = document.getElementById(this.data.get("canvasId")).getContext('2d');
-    var labels = this.labels
-    var length = labels.length
-    var myChart = new Chart(ctx, {
-      type: this.data.get("chartType"),
-      data: {
-        labels: this.labels,
-        datasets: this.datasets
-      },
+    this.chart = new Chart(ctx, {
+      type: chartType,
+      data: {},
       options: {
         scales: {
           yAxes: [{
@@ -26,35 +30,38 @@ export default class extends Controller {
     });
   }
 
-  get labels() {
-    return JSON.parse(this.labelsTarget.dataset.value)
+  refreshChart() {
+    var team = document.querySelector("#filters").filters.teamTarget.value
+    var action_type = document.querySelector("#filters").filters.actionTypeTarget.value
+    var matchweek = document.querySelector("#filters").filters.matchweekTarget.value
+
+    fetch(`${this.apiUrl}?team=${team}&action_type=${action_type}&matchweek=${matchweek}`)
+    .then(response => response.json())
+    .then(chartData => {
+      this.chart.config.data = this.refreshChartData(chartData)
+      this.chart.update();
+    })
   }
 
-  get datasets() {
+  refreshChartData(chartData){
+    var labels = chartData.labels
+    var data = chartData.data
     var datasets = []
-    var hash = {}
-    var data = this.dataChart
-    const COLORS = this.colors
-    const BORDER_COLORS = this.borderColors
-    this.dataset_labels.forEach(function (action_type, j){
-      hash = {}
-      hash.label = action_type
-      hash.data = data[j]
-      hash.backgroundColor = COLORS[j]
-      hash.borderColor = BORDER_COLORS[j]
-      hash.borderWidth = 1
-      datasets.push(hash)
+    var colors = this.colors
+    var borderColors = this.borderColors
+    Object.keys(data).forEach(function(label, index) {
+      datasets.push({
+        label: label,
+        data: data[label],
+        backgroundColor: colors[index],
+        bordelColor: borderColors[index],
+        borderWidth: 1
+      })
     });
-
-    return datasets
-  }
-
-  get dataset_labels(){
-    return JSON.parse(this.datasetLabelsTarget.dataset.value)
-  }
-
-  get dataChart(){
-    return JSON.parse(this.dataTarget.dataset.value)
+    return {
+      labels: labels,
+      datasets: datasets
+    }
   }
 
   get colors(){
