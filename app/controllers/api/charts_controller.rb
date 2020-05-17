@@ -20,7 +20,7 @@ module Api
       grouped_result = add_filters_to_query(Goal.with_joins).group("teams.acronym", "goals.action_type").count
 
       data = unlink_labels(grouped_result, labels, labels2)
-      render json: { labels: labels, data: data}
+      render json: { labels: labels, data: data }
     end
 
     def goal_action_type_matchweeks
@@ -29,7 +29,7 @@ module Api
       grouped_result = add_filters_to_query(Goal.with_joins).group("games.matchweek", "goals.action_type").count
 
       data = unlink_labels(grouped_result, labels, labels2)
-      render json: { labels: labels, data: data}
+      render json: { labels: labels, data: data }
     end
 
     private
