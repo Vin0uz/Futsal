@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :game do
-    association :home_team, factory: :team
-    association :away_team, factory: :team
   end
 
   factory :goal do
@@ -14,5 +12,10 @@ FactoryBot.define do
   end
 
   factory :team do
+  end
+
+  factory :team_game do
+    team
+    game
   end
 end

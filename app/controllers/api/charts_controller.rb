@@ -9,13 +9,13 @@ module Api
 
     def team_goals
       data = add_filters_to_query(Goal.with_joins).group("teams.acronym").count
-      labels = add_filters_to_query(Team.left_joins(:home_games, :away_games, players: :goals)).all.pluck(:acronym).uniq
+      labels = add_filters_to_query(Team.left_joins(:games, players: :goals)).all.pluck(:acronym).uniq
 
       render json: { labels: labels, data: data }
     end
 
     def goal_action_type_teams
-      labels = add_filters_to_query(Team.left_joins(:home_games, :away_games, players: :goals)).all.pluck(:acronym).uniq
+      labels = add_filters_to_query(Team.left_joins(:games, players: :goals)).all.pluck(:acronym).uniq
       labels2 = add_filters_to_query(Goal.with_joins).all.pluck(:action_type).uniq
       grouped_result = add_filters_to_query(Goal.with_joins).group("teams.acronym", "goals.action_type").count
 
@@ -24,7 +24,7 @@ module Api
     end
 
     def goal_action_type_matchweeks
-      labels = add_filters_to_query(Game.left_joins(:home_team, :away_team, :goals)).all.pluck(:matchweek).uniq
+      labels = add_filters_to_query(Game.left_joins(:teams, :goals)).all.pluck(:matchweek).uniq
       labels2 = add_filters_to_query(Goal.with_joins).all.pluck(:action_type).uniq
       grouped_result = add_filters_to_query(Goal.with_joins).group("games.matchweek", "goals.action_type").count
 
