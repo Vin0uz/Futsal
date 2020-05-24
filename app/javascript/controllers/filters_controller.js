@@ -1,11 +1,12 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "team", "actionType", "matchWeek" ]
+  static targets = [ "team", "player", "actionType", "matchWeek" ]
 
   connect(){
     this.element[this.identifier] = this
     this.initTeamFilter()
+    this.initPlayerFilter()
     this.initActionTypeFilter()
     this.initMatchWeekFilter()
   }
@@ -24,6 +25,18 @@ export default class extends Controller {
         options = options + this.optionTemplate(team.acronym, team.name);
       });
       this.teamTarget.innerHTML = options;
+    });
+  }
+
+  initPlayerFilter(){
+    var options = `<option value="">Tous</option>`
+    fetch(`api/players`)
+    .then(response => response.json())
+    .then( players => {
+      players.forEach((player) => {
+        options = options + this.optionTemplate(player.name, player.name);
+      });
+      this.playerTarget.innerHTML = options;
     });
   }
 

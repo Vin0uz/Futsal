@@ -29,8 +29,8 @@ export default class extends Controller {
     var team = document.querySelector("#filters").filters.teamTarget.value
     var action_type = document.querySelector("#filters").filters.actionTypeTarget.value
     var match_week = document.querySelector("#filters").filters.matchWeekTarget.value
-
-    fetch(`${this.apiUrl}?team=${team}&action_type=${action_type}&match_week=${match_week}`)
+    var player = document.querySelector("#filters").filters.playerTarget.value
+    fetch(`${this.apiUrl}?team=${team}&player=${player}&action_type=${action_type}&match_week=${match_week}`)
     .then(response => response.json())
     .then(chartData => {
       this.chart.config.data = this.refreshChartData(chartData)
