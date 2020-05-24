@@ -55,4 +55,21 @@ export default class extends Controller {
     return `
     <option value=${value}>${text} </option>`
   }
+
+  refreshListVideo(){
+    var listTarget = document.querySelector("#videos").videos.listTarget
+    var team = this.teamTarget.value
+    var action_type = this.actionTypeTarget.value
+    var match_week = this.matchWeekTarget.value
+    var options = ""
+    fetch(`api/goals/videos?team=${team}&action_type=${action_type}&match_week=${match_week}`)
+    .then(response => response.json())
+    .then( goals => {
+      goals.forEach((goal) => {
+        options = options + this.optionTemplate(goal.youtube_id, `${goal.match_week} - ${goal.acronym} - ${goal.name} - ${goal.action_type}`);
+      });
+      listTarget.innerHTML = options;
+      document.querySelector("#videos").videos.displayVideo()
+    });
+  }
 }
