@@ -10,7 +10,7 @@ class GameDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     goals: Field::HasMany,
     id: Field::String.with_options(searchable: false),
-    match_week: Field::Integer,
+    match_week: Field::Number,
     date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
