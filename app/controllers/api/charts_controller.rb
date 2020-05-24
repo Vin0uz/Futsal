@@ -23,10 +23,10 @@ module Api
       render json: { labels: labels, data: data }
     end
 
-    def goal_action_type_matchweeks
-      labels = add_filters_to_query(Game.left_joins(:teams, :goals)).all.pluck(:matchweek).uniq
+    def goal_action_type_match_weeks
+      labels = add_filters_to_query(Game.left_joins(:teams, :goals)).all.pluck(:match_week).uniq
       labels2 = add_filters_to_query(Goal.with_joins).all.pluck(:action_type).uniq
-      grouped_result = add_filters_to_query(Goal.with_joins).group("games.matchweek", "goals.action_type").count
+      grouped_result = add_filters_to_query(Goal.with_joins).group("games.match_week", "goals.action_type").count
 
       data = unlink_labels(grouped_result, labels, labels2)
       render json: { labels: labels, data: data }
@@ -43,8 +43,8 @@ module Api
         query = query.where(goals: { action_type: action_type })
       end
 
-      if (matchweek = params[:matchweek].presence)
-        query = query.where(games: { matchweek: matchweek })
+      if (match_week = params[:match_week].presence)
+        query = query.where(games: { match_week: match_week })
       end
 
       query
