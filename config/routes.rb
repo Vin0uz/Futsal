@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     get "/action_type_goals", to: "charts#action_type_goals"
     get "/team_goals", to: "charts#team_goals"
     get "/goal_action_type_teams", to: "charts#goal_action_type_teams"
-    get "/goal_action_type_matchweeks", to: "charts#goal_action_type_matchweeks"
+    get "/goal_action_type_match_weeks", to: "charts#goal_action_type_match_weeks"
     get "/teams", to: "teams#index"
     get "/goals/action_types", to: "goals#action_types"
-    get "/games/matchweeks", to: "games#matchweeks"
+    get "/games/match_weeks", to: "games#match_weeks"
   end
 end

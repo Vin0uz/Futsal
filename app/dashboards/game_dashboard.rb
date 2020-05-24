@@ -10,7 +10,7 @@ class GameDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     goals: Field::HasMany,
     id: Field::String.with_options(searchable: false),
-    matchweek: Field::String,
+    match_week: Field::Integer,
     date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -31,7 +31,7 @@ class GameDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     "goals",
     "id",
-    "matchweek",
+    "match_week",
     "date",
     "created_at",
     "updated_at",
@@ -42,7 +42,7 @@ class GameDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     "goals",
-    "matchweek",
+    "match_week",
     "date",
   ].freeze
 

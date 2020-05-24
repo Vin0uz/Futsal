@@ -1,8 +1,8 @@
 module Api
   class GamesController < ApplicationController
-    def matchweeks
-      matchweeks = Game.all.pluck(:matchweek).uniq
-      render json: matchweeks
+    def match_weeks
+      match_weeks = Game.all.pluck(:match_week).uniq
+      render json: match_weeks
     end
   end
 end

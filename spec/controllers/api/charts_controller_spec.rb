@@ -43,17 +43,17 @@ describe Api::ChartsController do
     end
   end
 
-  describe "#goal_action_type_matchweeks" do
+  describe "#goal_action_type_match_weeks" do
     it "returns labels and data as hash of arrays" do
       team1 = create(:team, acronym: "ZZ")
       team2 = create(:team, acronym: "team2")
       player = create(:player, team: team1)
-      create(:goal, action_type: "Nice", scorer: player, game: create(:game, matchweek: "Day1", teams: [team1, team2]))
+      create(:goal, action_type: "Nice", scorer: player, game: create(:game, match_week: 123, teams: [team1, team2]))
 
-      get(:goal_action_type_matchweeks)
+      get(:goal_action_type_match_weeks)
 
       parsed_body = JSON.parse(response.body)
-      expect(parsed_body["labels"]).to eq(["Day1"])
+      expect(parsed_body["labels"]).to eq([123])
       expect(parsed_body["data"]).to eq("Nice" => [1])
     end
   end

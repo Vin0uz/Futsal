@@ -14,7 +14,7 @@ if Rails.env.development? || Rails.env.test?
       ujs_derrouaz = Player.create(team: ujs, name: "Derrouaz")
       ujs_ahssen = Player.create(team: ujs, name: "Ahssen")
 
-      game = Game.create(matchweek: "J1", date: "14/09/2019".to_date)
+      game = Game.create(match_week: 1, date: "14/09/2019".to_date)
       game.team_games.create(team: ujs, home: true)
       game.team_games.create(team: nfm, home: false)
 

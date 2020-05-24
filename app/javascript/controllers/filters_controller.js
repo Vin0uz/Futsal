@@ -1,13 +1,13 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "team", "actionType", "matchweek" ]
+  static targets = [ "team", "actionType", "matchWeek" ]
 
   connect(){
     this.element[this.identifier] = this
     this.initTeamFilter()
     this.initActionTypeFilter()
-    this.initMatchweekFilter()
+    this.initMatchWeekFilter()
   }
 
   triggerUpdate(){
@@ -39,15 +39,15 @@ export default class extends Controller {
     });
   }
 
-  initMatchweekFilter(){
+  initMatchWeekFilter(){
     var options = `<option value="">Toutes</option>`
-    fetch(`api/games/matchweeks`)
+    fetch(`api/games/match_weeks`)
     .then(response => response.json())
-    .then( matchweeks => {
-      matchweeks.forEach((matchweek) => {
-        options = options + this.optionTemplate(matchweek, matchweek);
+    .then( matchWeeks => {
+      matchWeeks.forEach((matchWeek) => {
+        options = options + this.optionTemplate(matchWeek, `J${matchWeek}`);
       });
-      this.matchweekTarget.innerHTML = options;
+      this.matchWeekTarget.innerHTML = options;
     });
   }
 

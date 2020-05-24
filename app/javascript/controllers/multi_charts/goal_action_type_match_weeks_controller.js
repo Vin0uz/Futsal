@@ -8,7 +8,7 @@ export default class extends MultiChartController {
   }
 
   get apiUrl(){
-    return "/api/goal_action_type_matchweeks"
+    return "/api/goal_action_type_match_weeks"
   }
 
   get chartType(){
