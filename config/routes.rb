@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root "teams#index"
 
   resources :teams, only: :index
+  resources :videos, only: :index
 
   namespace :api do
     get "/action_type_goals", to: "charts#action_type_goals"
