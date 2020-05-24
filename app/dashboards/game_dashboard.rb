@@ -9,13 +9,9 @@ class GameDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     goals: Field::HasMany,
-    home_team: Field::BelongsTo.with_options(class_name: "Team"),
-    away_team: Field::BelongsTo.with_options(class_name: "Team"),
     id: Field::String.with_options(searchable: false),
     matchweek: Field::String,
     date: Field::DateTime,
-    home_team_id: Field::String.with_options(searchable: false),
-    away_team_id: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,8 +23,6 @@ class GameDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     "goals",
-    "home_team",
-    "away_team",
     "id",
   ].freeze
 
@@ -36,13 +30,9 @@ class GameDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     "goals",
-    "home_team",
-    "away_team",
     "id",
     "matchweek",
     "date",
-    "home_team_id",
-    "away_team_id",
     "created_at",
     "updated_at",
   ].freeze
@@ -52,12 +42,8 @@ class GameDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     "goals",
-    "home_team",
-    "away_team",
     "matchweek",
     "date",
-    "home_team_id",
-    "away_team_id",
   ].freeze
 
   # COLLECTION_FILTERS

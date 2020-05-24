@@ -18,7 +18,7 @@ describe Api::ChartsController do
       team1 = create(:team, acronym: "ZZ")
       team2 = create(:team, acronym: "team2")
       player = create(:player, team: team1)
-      create(:goal, scorer: player, game: create(:game, home_team: team1, away_team: team2))
+      create(:goal, scorer: player, game: create(:game, teams: [team1, team2]))
 
       get(:team_goals)
 
@@ -33,7 +33,7 @@ describe Api::ChartsController do
       team1 = create(:team, acronym: "ZZ")
       team2 = create(:team, acronym: "team2")
       player = create(:player, team: team1)
-      create(:goal, action_type: "Nice", scorer: player, game: create(:game, home_team: team1, away_team: team2))
+      create(:goal, action_type: "Nice", scorer: player, game: create(:game, teams: [team1, team2]))
 
       get(:goal_action_type_teams)
 
@@ -48,7 +48,7 @@ describe Api::ChartsController do
       team1 = create(:team, acronym: "ZZ")
       team2 = create(:team, acronym: "team2")
       player = create(:player, team: team1)
-      create(:goal, action_type: "Nice", scorer: player, game: create(:game, matchweek: "Day1", home_team: team1, away_team: team2))
+      create(:goal, action_type: "Nice", scorer: player, game: create(:game, matchweek: "Day1", teams: [team1, team2]))
 
       get(:goal_action_type_matchweeks)
 

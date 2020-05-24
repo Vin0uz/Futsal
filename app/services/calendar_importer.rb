@@ -15,7 +15,9 @@ class CalendarImporter
       ActiveRecord::Base.transaction do
         home = Team.find_by!(acronym: row[HOMETEAM])
         away = Team.find_by!(acronym: row[AWAYTEAM])
-        Game.find_or_create_by!(matchweek: row[MATCHWEEK], home_team: home, away_team: away)
+        game = Game.find_or_create_by!(matchweek: row[MATCHWEEK])
+        game.team_games.create(team: home, home: true)
+        game.team_games.create(team: away, home: false)
       end
       puts "."
     rescue StandardError => error

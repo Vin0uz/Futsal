@@ -16,7 +16,7 @@ class GoalImporter
     CSV.foreach(@csv, col_sep: ",", quote_char: '"', headers: :first_row) do |row|
       ActiveRecord::Base.transaction do
         team = Team.find_by!(acronym: row[TEAM])
-        game = Game.find_by(matchweek: row[MATCHWEEK], home_team: team) || Game.find_by(matchweek: row[MATCHWEEK], away_team: team)
+        game = Game.joins(:teams).find_by(matchweek: row[MATCHWEEK], teams: { id: team.id })
         if game.blank?
           raise "Game not found"
         end
