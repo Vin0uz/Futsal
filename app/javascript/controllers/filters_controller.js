@@ -56,7 +56,7 @@ export default class extends Controller {
     <option value=${value}>${text} </option>`
   }
 
-  refreshListVideo(){
+  loadListVideo(){
     var listTarget = document.querySelector("#videos").videos.listTarget
     var team = this.teamTarget.value
     var action_type = this.actionTypeTarget.value
