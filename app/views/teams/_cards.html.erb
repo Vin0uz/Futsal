@@ -1,47 +1,37 @@
 <div class="flex flex-wrap">
   <div class="card">
-    <!--Metric Card-->
-    <div class="bg-white border rounded shadow p-2">
-      <div class="flex flex-row items-center">
-        <div class="flex-shrink pr-4">
-          <div class="rounded p-3 bg-green-600"><i class="fa fa-wallet fa-2x fa-fw fa-inverse"></i></div>
-        </div>
-        <div class="flex-1 text-right md:text-center">
-          <h5 class="font-bold uppercase text-gray-500">Matchs joués</h5>
-          <h3 class="font-bold text-3xl"><%= @cards_data[:games_count] %><span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
-        </div>
+    <div>
+      <div class="flex-shrink pr-4">
+        <div class="rounded p-3 bg-green-600"></div>
+      </div>
+      <div class="flex-1 text-right md:text-center">
+        <h5 class="font-bold uppercase text-gray-500">Matchs joués</h5>
+        <h3 class="font-bold text-3xl"><%= @cards_data[:games_count] %><span class="text-green-500"></h3>
       </div>
     </div>
-    <!--/Metric Card-->
   </div>
+
   <div class="card">
-    <!--Metric Card-->
-    <div class="bg-white border rounded shadow p-2">
-      <div class="flex flex-row items-center">
-        <div class="flex-shrink pr-4">
-          <div class="rounded p-3 bg-orange-600"><i class="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
-        </div>
-        <div class="flex-1 text-right md:text-center">
-          <h5 class="font-bold uppercase text-gray-500">Meilleure Attaque</h5>
-          <h3 class="font-bold text-3xl"><%= "#{@cards_data[:best_attack][0]} - #{@cards_data[:best_attack][1]}" %><span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
-        </div>
+    <div>
+      <div class="flex-shrink pr-4">
+        <div class="rounded p-3 bg-orange-600"></div>
+      </div>
+      <div class="flex-1 text-right md:text-center">
+        <h5 class="font-bold uppercase text-gray-500">Meilleure Attaque</h5>
+        <h3 class="font-bold text-3xl"><%= "#{@cards_data[:best_attack][0]} - #{@cards_data[:best_attack][1]}" %></h3>
       </div>
     </div>
-    <!--/Metric Card-->
   </div>
+
   <div class="card">
-    <!--Metric Card-->
-    <div class="bg-white border rounded shadow p-2">
-      <div class="flex flex-row items-center">
-        <div class="flex-shrink pr-4">
-          <div class="rounded p-3 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-fw fa-inverse"></i></div>
-        </div>
-        <div class="flex-1 text-right md:text-center">
-          <h5 class="font-bold uppercase text-gray-500">Meilleur Buteur</h5>
-          <h3 class="font-bold text-3xl"><%= "#{@cards_data[:best_scorer][0]} - #{@cards_data[:best_scorer][1]}" %><span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
-        </div>
+    <div>
+      <div class="flex-shrink pr-4">
+        <div class="rounded p-3 bg-yellow-600"></div>
+      </div>
+      <div class="flex-1 text-right md:text-center">
+        <h5 class="font-bold uppercase text-gray-500">Meilleur Buteur</h5>
+        <h3 class="font-bold text-3xl"><%= "#{@cards_data[:best_scorer][0]} - #{@cards_data[:best_scorer][1]}" %></h3>
       </div>
     </div>
-    <!--/Metric Card-->
   </div>
 </div>
