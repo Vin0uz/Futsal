@@ -6,5 +6,6 @@
 
 
 @import "abstracts/index";
+@import "atoms/index";
 
 @import "tailwindcss/utilities";
