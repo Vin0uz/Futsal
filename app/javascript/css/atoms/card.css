@@ -1,13 +1,13 @@
 .card{
-  @apply w-1/3 p-3;
+  @apply w-full p-3;
 
   > div {
     @apply bg-white border rounded shadow p-2 flex flex-row items-center;
   }
 }
 
-@media (--mobile-portrait) {
+@media (--desktop) {
   .card {
-    @apply w-full;
+    @apply w-1/3;
   }
 }
