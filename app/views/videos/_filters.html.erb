@@ -1,47 +1,47 @@
 <div class="flex flex-wrap" data-controller="filters" id="filters">
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+  <div class="filter">
+    <label for="grid-state">
       Équipe
     </label>
     <div class="relative">
-      <select class="block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded leading-tight focus:outline-none" id="grid-state" data-target="filters.team" data-action="filters#loadListVideo">
+      <select id="grid-state" data-target="filters.team" data-action="filters#loadListVideo">
         <option value="">Toutes</option>
         <option value="ACCES">ACCES</option>
         <option>Texas</option>
       </select>
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
       </div>
     </div>
   </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+  <div class="filter">
+    <label for="grid-state">
       Type d'action
     </label>
     <div class="relative">
-      <select class="block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded leading-tight focus:outline-none" id="grid-state" data-target="filters.actionType" data-action="filters#loadListVideo">
+      <select id="grid-state" data-target="filters.actionType" data-action="filters#loadListVideo">
         <option value="">Toutes</option>
         <option value="Attaque_placee">Attaque placée</option>
         <option>Texas</option>
       </select>
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
       </div>
     </div>
   </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+  <div class="filter">
+    <label for="grid-state">
       Journée
     </label>
     <div class="relative">
-      <select class="block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded leading-tight focus:outline-none" id="grid-state" data-target="filters.matchWeek" data-action="filters#loadListVideo">
+      <select id="grid-state" data-target="filters.matchWeek" data-action="filters#loadListVideo">
         <option value="">Toutes</option>
         <option value="J1">J1</option>
         <option>Texas</option>
       </select>
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
       </div>
     </div>
