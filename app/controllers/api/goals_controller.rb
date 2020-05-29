@@ -1,7 +1,7 @@
 module Api
   class GoalsController < ApplicationController
     def action_types
-      action_types = Goal.all.pluck(:action_type).uniq
+      action_types = add_filters_to_query(Goal.with_joins).all.pluck(:action_type).uniq
       render json: action_types
     end
 
