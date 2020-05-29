@@ -5,47 +5,68 @@ export default class extends Controller {
 
   connect(){
     this.element[this.identifier] = this
-    this.initTeamFilter()
-    this.initActionTypeFilter()
-    this.initMatchWeekFilter()
+    this.refreshTeamFilter()
+    this.refreshActionTypeFilter()
+    this.refreshMatchWeekFilter()
   }
 
   triggerUpdate(){
     const updateCharts = new CustomEvent("updateCharts", {});
     document.dispatchEvent(updateCharts);
+    this.refreshTeamFilter();
+    this.refreshActionTypeFilter();
+    this.refreshMatchWeekFilter();
   }
 
-  initTeamFilter(){
+  refreshTeamFilter(){
     var options = `<option value="">Toutes</option>`
-    fetch(`api/teams`)
+    var active = this.teamTarget.value
+    fetch(`api/teams?${this.urlParams}`)
     .then(response => response.json())
     .then( teams => {
       teams.forEach((team) => {
-        options = options + this.optionTemplate(team.acronym, team.name);
+        if (team.acronym == active){
+          options = this.optionTemplate(team.acronym, team.name) + options;
+        }
+        else{
+          options = options + this.optionTemplate(team.acronym, team.name);
+        }
       });
       this.teamTarget.innerHTML = options;
     });
   }
 
-  initActionTypeFilter(){
+  refreshActionTypeFilter(){
     var options = `<option value="">Toutes</option>`
-    fetch(`api/goals/action_types`)
+    var active = this.actionTypeTarget.value
+    fetch(`api/goals/action_types?${this.urlParams}`)
     .then(response => response.json())
     .then( action_types => {
       action_types.forEach((action_type) => {
-        options = options + this.optionTemplate(action_type, action_type);
+        if (action_type == active){
+          options = this.optionTemplate(action_type, action_type) + options;
+        }
+        else{
+          options = options + this.optionTemplate(action_type, action_type);
+        }
       });
       this.actionTypeTarget.innerHTML = options;
     });
   }
 
-  initMatchWeekFilter(){
+  refreshMatchWeekFilter(){
     var options = `<option value="">Toutes</option>`
-    fetch(`api/games/match_weeks`)
+    var active = this.matchWeekTarget.value
+    fetch(`api/games/match_weeks?${this.urlParams}`)
     .then(response => response.json())
     .then( matchWeeks => {
       matchWeeks.forEach((matchWeek) => {
-        options = options + this.optionTemplate(matchWeek, `J${matchWeek}`);
+        if (matchWeek == active){
+          options = this.optionTemplate(matchWeek, matchWeek) + options;
+        }
+        else{
+          options = options + this.optionTemplate(matchWeek, matchWeek);
+        }
       });
       this.matchWeekTarget.innerHTML = options;
     });
@@ -56,13 +77,17 @@ export default class extends Controller {
     <option value=${value}>${text} </option>`
   }
 
-  loadListVideo(){
-    var listTarget = document.querySelector("#videos").videos.listTarget
+  get urlParams(){
     var team = this.teamTarget.value
     var action_type = this.actionTypeTarget.value
     var match_week = this.matchWeekTarget.value
+    return `team=${team}&action_type=${action_type}&match_week=${match_week}`
+  }
+
+  loadListVideo(){
+    var listTarget = document.querySelector("#videos").videos.listTarget
     var options = ""
-    fetch(`api/goals/videos?team=${team}&action_type=${action_type}&match_week=${match_week}`)
+    fetch(`api/goals/videos??${this.urlParams}`)
     .then(response => response.json())
     .then( goals => {
       goals.forEach((goal) => {
