@@ -1,13 +1,11 @@
 <div class="flex flex-wrap" data-controller="filters" id="filters">
   <div class="filter">
-    <label for="grid-state">
+    <label for="filter-team">
       Équipe
     </label>
     <div class="relative">
-      <select id="grid-state" data-target="filters.team" data-action="filters#triggerUpdate">
+      <select id="filter-team" data-target="filters.team" data-action="filters#triggerUpdate">
         <option value="">Toutes</option>
-        <option value="ACCES">ACCES</option>
-        <option>Texas</option>
       </select>
       <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -16,14 +14,12 @@
   </div>
 
   <div class="filter">
-    <label for="grid-state">
+    <label for="filter-action">
       Type d'action
     </label>
     <div class="relative">
-      <select id="grid-state" data-target="filters.actionType" data-action="filters#triggerUpdate">
+      <select id="filter-action" data-target="filters.actionType" data-action="filters#triggerUpdate">
         <option value="">Toutes</option>
-        <option value="Attaque_placee">Attaque placée</option>
-        <option>Texas</option>
       </select>
       <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -32,14 +28,12 @@
   </div>
 
   <div class="filter">
-    <label for="grid-state">
+    <label for="filter-matchweek">
       Journée
     </label>
     <div class="relative">
-      <select id="grid-state" data-target="filters.matchWeek" data-action="filters#triggerUpdate">
+      <select id="filter-matchweek" data-target="filters.matchWeek" data-action="filters#triggerUpdate">
         <option value="">Toutes</option>
-        <option value="J1">J1</option>
-        <option>Texas</option>
       </select>
       <div class="arrow">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
