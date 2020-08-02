@@ -15,7 +15,7 @@ class CalendarImporter
       ActiveRecord::Base.transaction do
         home = Team.find_by!(acronym: row[HOMETEAM])
         away = Team.find_by!(acronym: row[AWAYTEAM])
-        game = Game.find_or_create_by!(match_week: row[MATCHWEEK].delete("^0-9").to_i)
+        game = Game.create(match_week: row[MATCHWEEK].delete("^0-9").to_i)
         game.team_games.create(team: home, home: true)
         game.team_games.create(team: away, home: false)
       end

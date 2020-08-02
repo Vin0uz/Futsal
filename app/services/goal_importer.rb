@@ -21,8 +21,16 @@ class GoalImporter
           raise "Game not found"
         end
 
-        player = Player.find_or_create_by!(team: team, name: row[PLAYER])
-        Goal.find_or_create_by!(game: game, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
+        opponent = (game.teams - [team]).first
+        team_game = TeamGame.find_or_create_by!(team: team, game: game)
+        team_game_opponent = TeamGame.find_or_create_by!(team: opponent, game: game)
+
+        player = Player.find_or_create_by!(name: row[PLAYER], team: team)
+        Goal.find_or_create_by!(game: game, team: team, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
+        team_game_opponent.goals_conceded += 1
+        team_game_opponent.save!
+        team_game.goals_scored += 1
+        team_game.save!
       end
       puts "-"
     rescue StandardError => error
