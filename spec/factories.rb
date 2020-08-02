@@ -5,6 +5,7 @@ FactoryBot.define do
   factory :goal do
     association :scorer, factory: :player
     game
+    team
   end
 
   factory :player do

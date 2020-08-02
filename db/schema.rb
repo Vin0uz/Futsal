@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_145358) do
+ActiveRecord::Schema.define(version: 2020_08_02_155906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,9 +32,11 @@ ActiveRecord::Schema.define(version: 2020_05_24_145358) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "youtube_id"
     t.string "action_details"
+    t.uuid "team_id"
     t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["passer_id"], name: "index_goals_on_passer_id"
     t.index ["scorer_id"], name: "index_goals_on_scorer_id"
+    t.index ["team_id"], name: "index_goals_on_team_id"
   end
 
   create_table "players", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -49,6 +51,9 @@ ActiveRecord::Schema.define(version: 2020_05_24_145358) do
     t.uuid "team_id"
     t.uuid "game_id"
     t.boolean "home"
+    t.string "result"
+    t.integer "goals_scored", default: 0, null: false
+    t.integer "goals_conceded", default: 0, null: false
     t.index ["game_id"], name: "index_team_games_on_game_id"
     t.index ["team_id"], name: "index_team_games_on_team_id"
   end
