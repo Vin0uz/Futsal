@@ -26,15 +26,31 @@ class GoalImporter
         team_game_opponent = TeamGame.find_or_create_by!(team: opponent, game: game)
 
         player = Player.find_or_create_by!(name: row[PLAYER], team: team)
-        Goal.find_or_create_by!(game: game, team: team, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
-        team_game_opponent.goals_conceded += 1
-        team_game_opponent.save!
-        team_game.goals_scored += 1
-        team_game.save!
+        Goal.create!(game: game, team: team, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
+        update_score(game: team_game_opponent, type: "conceded")
+        update_score(game: team_game, type: "scored")
       end
       puts "-"
     rescue StandardError => error
       raise StandardError.new("#{row[MATCHWEEK]} - #{row[TEAM]} : #{error}")
     end
+  end
+
+  def update_score(game:, type:)
+    if type == "conceded"
+      game.goals_conceded += 1
+    elsif type == "scored"
+      game.goals_scored += 1
+    end
+
+    if game.goals_scored > game.goals_conceded
+      game.result = "win"
+    elsif game.goals_scored == game.goals_conceded
+      game.result = "draw"
+    else
+      game.result = "loss"
+    end
+
+    game.save!
   end
 end

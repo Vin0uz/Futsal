@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_155906) do
     t.uuid "team_id"
     t.uuid "game_id"
     t.boolean "home"
-    t.string "result"
+    t.string "result", default: "draw", null: false
     t.integer "goals_scored", default: 0, null: false
     t.integer "goals_conceded", default: 0, null: false
     t.index ["game_id"], name: "index_team_games_on_game_id"
