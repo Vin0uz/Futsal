@@ -8,6 +8,11 @@ class GoalImporter
   TYPE = "Types_actions".freeze
   YOUTUBE = "Youtube".freeze
 
+  STRATEGIE = ["Penalti", "10M", "Touche", "CPA", "Corner"].freeze
+  ATTAQUE_PLACEE = ["4-0", "Pivot"].freeze
+  POWERPLAY = ["Gardien_Joueur", "Defense_GJ"].freeze
+  TRANSITION = ["Contre_attaque", "Pression", "Recup"].freeze
+
   def initialize(csv_path:)
     @csv = URI.open(csv_path)
   end
@@ -26,13 +31,29 @@ class GoalImporter
         team_game_opponent = TeamGame.find_or_create_by!(team: opponent, game: game)
 
         player = Player.find_or_create_by!(name: row[PLAYER], team: team)
-        Goal.create!(game: game, team: team, scorer: player, action_type: row[TYPE], youtube_id: row[YOUTUBE])
+        action_details = row[TYPE]
+        action_type = get_action_type(action_details)
+
+        Goal.create!(game: game, team: team, scorer: player, action_type: action_type, action_details: action_details, youtube_id: row[YOUTUBE])
+
         update_score(game: team_game_opponent, type: "conceded")
         update_score(game: team_game, type: "scored")
       end
       puts "-"
     rescue StandardError => error
       raise StandardError.new("#{row[MATCHWEEK]} - #{row[TEAM]} : #{error}")
+    end
+  end
+
+  def get_action_type(action_details)
+    if STRATEGIE.include?(action_details)
+      "Strategie"
+    elsif ATTAQUE_PLACEE.include?(action_details)
+      "Attaque_placee"
+    elsif POWERPLAY.include?(action_details)
+      "Powerplay"
+    elsif TRANSITION.include?(action_details)
+      "Transition"
     end
   end
 
