@@ -8,9 +8,7 @@ describe Api::TeamsController do
 
       get(:index)
 
-      parsed_body = JSON.parse(response.body)
-
-      expect(parsed_body).to eq(Team.all.as_json)
+      expect(response.body).to eq(Team.all.to_json)
     end
   end
 end
