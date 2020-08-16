@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     root to: "goals#index"
   end
 
-  root "teams#index"
+  root "home#show"
 
+  resource :home, only: :show
   resources :teams, only: :index
   resources :videos, only: :index
 
