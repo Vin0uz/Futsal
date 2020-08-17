@@ -17,4 +17,15 @@ module DashboardHelper
       " - "
     end
   end
+
+  def class_in_ranking(team:, index:)
+    css_class = ""
+    case index
+    when 10..11
+      css_class = "bg-red-200"
+    when 0
+      css_class="bg-green-200"
+    end
+    css_class
+  end
 end

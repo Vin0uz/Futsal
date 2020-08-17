@@ -98,7 +98,7 @@
           </div>
           <div class="flex-1 text-center">
             <h3 class="font-bold text-3xl">
-              <%= team_ranking(team: @team, ranking: @ranking) %>
+              <%= team_ranking = team_ranking(team: @team, ranking: @ranking) %>
             </h3>
             <h5 class="font-bold text-gray-500">Classement</h5>
           </div>
@@ -167,39 +167,38 @@
           <!--Table Card-->
           <div class="p-3">
             <div class="border-b p-3">
-              <h5 class="font-bold text-black">Table</h5>
+              <h5 class="font-bold text-black">Classement</h5>
             </div>
             <div class="p-5">
               <table class="w-full p-5 text-gray-700">
                 <thead>
                   <tr>
-                    <th class="text-left text-blue-900">Name</th>
-                    <th class="text-left text-blue-900">Side</th>
-                    <th class="text-left text-blue-900">Role</th>
+                    <th class="text-left text-blue-900">Équipe</th>
+                    <th class="text-blue-900">Points</th>
+                    <th class="text-blue-900">Matchs</th>
+                    <th class="text-blue-900">Diff</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>Obi Wan Kenobi</td>
-                    <td>Light</td>
-                    <td>Jedi</td>
-                  </tr>
-                  <tr>
-                    <td>Greedo</td>
-                    <td>South</td>
-                    <td>Scumbag</td>
-                  </tr>
-                  <tr>
-                    <td>Darth Vader</td>
-                    <td>Dark</td>
-                    <td>Sith</td>
-                  </tr>
+                  <% @ranking.each.with_index do |(team, details), index| %>
+                    <% if team == @team.acronym %>
+                      <tr class="font-bold">
+                        <td class="text-left"> <%= details[:name] %> </td>
+                        <td class="text-center"> <%= details[:points] %> </td>
+                        <td class="text-center"> <%= details[:games] %> </td>
+                        <td class="text-center"> <%= details[:goal_average] %></td>
+                    <% else %>
+                      <tr class="<%= class_in_ranking(team: team, index: index) %>">
+                        <td class="text-left"> <%= details[:name] %> </td>
+                        <td class="text-center"> <%= details[:points] %> </td>
+                        <td class="text-center"> <%= details[:games] %> </td>
+                        <td class="text-center"> <%= details[:goal_average] %></td>
+                    <% end %>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
-
-              <p class="py-2"><a href="#">See More issues...</a></p>
-
             </div>
           </div>
           <!--/table Card-->
