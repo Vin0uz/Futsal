@@ -21,6 +21,7 @@ class Team < ApplicationRecord
 
   def ranking_details
     details = {}
+    details[:name] = name
     details[:games] = games.count
     details[:points] = total_points
     details[:goals_for] = total_goals_for
