@@ -5,7 +5,6 @@ class HomeController < ApplicationController
     @ranking = ranking
   end
 
-
   private
 
   def ranking
@@ -13,6 +12,6 @@ class HomeController < ApplicationController
     Team.all.find_each do |team|
       rank[team.acronym] = team.ranking_details
     end
-    rank.sort_by{|team, details| [details[:points], details[:goal_average]] }.reverse.to_h
+    rank.sort_by { |_team, details| [details[:points], details[:goal_average]] }.reverse.to_h
   end
 end
