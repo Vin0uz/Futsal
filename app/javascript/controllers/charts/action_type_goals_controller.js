@@ -12,6 +12,9 @@ export default class extends ChartController {
   }
 
   get chartType(){
-    return "doughnut"
+    if (this.data.has("chartType"))
+      return this.data.get("chartType")
+    else
+      return "doughnut"
   }
 }

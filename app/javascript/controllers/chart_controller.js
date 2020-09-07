@@ -26,7 +26,10 @@ export default class extends Controller {
   }
 
   refreshChart() {
-    var params = document.querySelector("#filters").filters.urlParams
+    if (this.data.has("params"))
+      var params = this.data.get("params")
+    else
+      var params = document.querySelector("#filters").filters.urlParams
 
     fetch(`${this.apiUrl}?${params}`)
     .then(response => response.json())
