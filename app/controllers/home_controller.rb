@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def show
     @team = Team.find_by(acronym: "NMF")
+    @next_opponent = Team.find_by(acronym: "NMF")
     @last_team_games = @team.team_games.joins(:game).order(created_at: :desc).first(5)
     @ranking = ranking
   end
