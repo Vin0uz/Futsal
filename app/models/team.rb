@@ -29,4 +29,12 @@ class Team < ApplicationRecord
     details[:goal_average] = goal_average
     details
   end
+
+  def next_game
+    games.where("date >= ?", Date.today).order(date: :asc).first
+  end
+
+  def next_opponent
+    next_game.teams.where.not(id: id).first
+  end
 end
