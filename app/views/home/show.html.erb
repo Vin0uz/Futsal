@@ -132,7 +132,7 @@
                 <div class="bg-white border rounded shadow">
                   <div>
                     <canvas id="chart2"></canvas>
-                    <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="chart2" data-charts--action-type-goals-params="team=NMF">
+                    <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="chart2" data-charts--action-type-goals-params="team=<%= @next_opponent.acronym %>">
                     </div>
                   </div>
                 </div>
@@ -144,7 +144,7 @@
                 <div class="bg-white border rounded shadow">
                   <div>
                     <canvas id="next_opponent_defense"></canvas>
-                    <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="next_opponent_defense" data-charts--action-type-goals-params="team=NMF">
+                    <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="next_opponent_defense" data-charts--action-type-goals-params="team=<%= @next_opponent.acronym %>">
                     </div>
                   </div>
                 </div>
