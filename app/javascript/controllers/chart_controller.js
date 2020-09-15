@@ -14,7 +14,7 @@ export default class extends Controller {
   }
 
   initChart(chartType) {
-    var ctx = document.getElementById(this.data.get("canvasId")).getContext('2d');
+    var ctx = document.getElementById(this.data.get("canvasId")).getContext("2d");
     this.chart = new Chart(ctx, {
       type: chartType,
       data: {},

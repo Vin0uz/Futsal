@@ -42,7 +42,7 @@
         <div class="flex relative inline-block pr-6 ml-4">
           <div class="relative text-sm">
             <button id="userButton" class="flex items-center focus:outline-none mr-3">
-              <span class="md:inline-block">Bonjour, FC Démo </span>
+              <span class="md:inline-block">Bonjour, <%= @team.name %></span>
             </button>
           </div>
         </div>
@@ -61,7 +61,7 @@
           </div>
           <div class="flex-1 text-center">
             <h3 class="font-bold text-3xl">
-              <%= team_ranking = team_ranking(team: @team, ranking: @ranking) %>
+              <%= team_ranking(team: @team, ranking: @ranking) %>
             </h3>
             <h5 class="font-bold text-gray-500">Classement</h5>
           </div>
@@ -144,7 +144,7 @@
                 <div class="bg-white border rounded shadow">
                   <div>
                     <canvas id="next_opponent_defense"></canvas>
-                    <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="next_opponent_defense" data-charts--action-type-goals-params="team=<%= @next_opponent.acronym %>">
+                    <div data-controller="charts--action-type-goals-against" data-charts--action-type-goals-against-canvas-id="next_opponent_defense" data-charts--action-type-goals-against-params="team=<%= @next_opponent.acronym %>">
                     </div>
                   </div>
                 </div>
@@ -221,7 +221,7 @@
           <div class="border-b mt-4">
             <h5 class="font-bold text-black">Ma défense</h5>
             <canvas id="myDefense"></canvas>
-            <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="myDefense" data-charts--action-type-goals-params="team=NMF" data-charts--action-type-goals-chart-type="doughnut">
+            <div data-controller="charts--action-type-goals-against" data-charts--action-type-goals-against-canvas-id="myDefense" data-charts--action-type-goals-against-params="team=NMF" data-charts--action-type-goals-against-chart-type="doughnut">
             </div>
           </div>
 
