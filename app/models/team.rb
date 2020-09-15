@@ -2,6 +2,7 @@ class Team < ApplicationRecord
   has_many :players
   has_many :team_games
   has_many :games, through: :team_games
+  has_many :goals
 
   def total_points
     (team_games.where(result: "win").count * 3) + team_games.where(result: "draw").count

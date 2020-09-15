@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get "/action_type_goals", to: "charts#action_type_goals"
+    get "/action_type_goals_against", to: "charts#action_type_goals_against"
     get "/team_goals", to: "charts#team_goals"
     get "/goal_action_type_teams", to: "charts#goal_action_type_teams"
     get "/goal_action_type_match_weeks", to: "charts#goal_action_type_match_weeks"

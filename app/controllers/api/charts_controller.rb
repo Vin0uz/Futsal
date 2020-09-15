@@ -7,6 +7,17 @@ module Api
       render json: { labels: labels, data: data }
     end
 
+    def action_type_goals_against
+      team = Team.find_by(acronym: params[:team])
+      if team.present?
+        data = Goal.where(game: team.games).where.not(team_id: team.id).group(:action_type).count
+        labels = Goal.where(game: team.games).where.not(team_id: team.id).pluck(:action_type).uniq
+        render json: { labels: labels, data: data }
+      else
+        render json: { labels: {}, data: {} }
+      end
+    end
+
     def team_goals
       data = add_filters_to_query(Goal.with_joins).group("teams.acronym").count
       labels = add_filters_to_query(Team.left_joins(:games, players: :goals)).all.pluck(:acronym).uniq
