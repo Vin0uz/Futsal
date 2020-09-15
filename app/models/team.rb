@@ -4,6 +4,8 @@ class Team < ApplicationRecord
   has_many :games, through: :team_games
   has_many :goals
 
+  validates_uniqueness_of :acronym
+
   def total_points
     (team_games.where(result: "win").count * 3) + team_games.where(result: "draw").count
   end

@@ -3,8 +3,8 @@ require "open-uri"
 
 class CalendarImporter
   MATCHWEEK = "Journees".freeze
-  HOMETEAM = "Equipe_Domicile".freeze
-  AWAYTEAM = "Equipe_Exterieur".freeze
+  HOMETEAM = "Equipe_domicile".freeze
+  AWAYTEAM = "Equipe_exterieur".freeze
   DATE = "Date".freeze
 
   def initialize(csv_path:)
