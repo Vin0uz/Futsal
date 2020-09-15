@@ -25,7 +25,7 @@ class Team < ApplicationRecord
   def ranking_details
     details = {}
     details[:name] = name
-    details[:games] = games.where(result: ["win", "draw", "loss"]).count
+    details[:games] = games.where(team_games: { result: ["win", "draw", "loss"] }).count
     details[:points] = total_points
     details[:goals_for] = total_goals_for
     details[:goals_against] = total_goals_against
