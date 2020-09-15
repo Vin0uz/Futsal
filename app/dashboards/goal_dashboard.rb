@@ -6,6 +6,7 @@ class GoalDashboard < Administrate::BaseDashboard
     passer: Field::BelongsTo.with_options(class_name: "Player"),
     team: Field::BelongsTo,
     game: Field::BelongsTo,
+    youtube_id: Field::String,
     id: Field::String.with_options(searchable: false),
     scorer_id: Field::String.with_options(searchable: false),
     passer_id: Field::String.with_options(searchable: false),
@@ -36,6 +37,7 @@ class GoalDashboard < Administrate::BaseDashboard
     :game,
     :team,
     :action_type,
+    :youtube_id,
   ].freeze
 
   COLLECTION_FILTERS = {}.freeze
