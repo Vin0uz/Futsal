@@ -31,7 +31,7 @@ class GameDashboard < Administrate::BaseDashboard
     :date,
   ].freeze
 
-  COLLECTION_FILTERS = {}.frezee
+  COLLECTION_FILTERS = {}.freeze
 
   def display_resource(game)
     "J#{game.match_week}: #{game.teams.first.acronym} - #{game.teams.second.acronym}"
