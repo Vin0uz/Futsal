@@ -40,4 +40,8 @@ class Team < ApplicationRecord
   def next_opponent
     next_game.teams.where.not(id: id).first
   end
+
+  def last_five_team_games
+    team_games.joins(:game).order(created_at: :desc).first(5)
+  end
 end

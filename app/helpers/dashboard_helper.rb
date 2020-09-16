@@ -1,6 +1,16 @@
 module DashboardHelper
   def team_ranking(team:, ranking:)
-    ranking.keys.index(team.acronym)
+    (ranking.keys.index(team.acronym.to_sym) + 1).ordinalize
+  end
+
+  def team_ranking_attack(team:, ranking:)
+    attack_ranking = ranking.sort_by { |_team, details| details[:goals_for] }.reverse.to_h
+    (attack_ranking.keys.index(team.acronym) + 1).ordinalize
+  end
+
+  def team_ranking_defense(team:, ranking:)
+    defense_ranking = ranking.sort_by { |_team, details| details[:goals_against] }.to_h
+    (defense_ranking.keys.index(team.acronym) + 1).ordinalize
   end
 
   def last_results(team:)
