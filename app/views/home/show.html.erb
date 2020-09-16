@@ -1,6 +1,6 @@
 <!-- Side bar-->
 <div id="sidebar" class="h-screen w-16 menu bg-white text-white px-4 flex items-center nunito static fixed shadow">
-  <ul class="list-reset ">
+  <ul class="list-reset">
     <li class="my-2 md:my-0">
       <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400">
         <i class="fas fa-home fa-fw mr-3"></i>
@@ -77,7 +77,7 @@
           </div>
           <div class="flex-1 text-center">
             <h3 class="font-bold text-3xl">
-              <% @last_team_games.each do |team_game| %>
+              <% @team.last_five_team_games.each do |team_game| %>
                 <% case team_game.result %>
                 <% when "win" %>
                   <span class="text-green-500"> V </span>
@@ -118,7 +118,7 @@
       <div class="w-full xl:w-2/3 p-6 xl:max-w-6xl">
 
         <!--"Container" for the graphs"-->
-        <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+        <div class="max-w-full lg:max-w-3xl xl:max-w-5xl next_opponent">
 
           <!--Graph Card-->
           <div class="border-b p-3">
@@ -152,11 +152,25 @@
                 </div>
               </div>
             </div>
-            <div class="px-6 pt-4 pb-2">
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">6ème</span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">D N V D</span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">2ème Attaque</span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">8ème Défense</span>
+            <div class="px-6 pt-4 pb-2 tags">
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= team_ranking(team: @next_opponent, ranking: @ranking) %></span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <% @next_opponent.last_five_team_games.each do |team_game| %>
+                <% case team_game.result %>
+                <% when "win" %>
+                  V
+                <% when "draw" %>
+                  N
+                <% when "loss" %>
+                  D
+                <% when "unknown" %>
+                  ?
+                <% end %>
+              <% end %>
+
+              </span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= team_ranking_attack(team: @next_opponent, ranking: @ranking) %> Attaque</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= team_ranking_defense(team: @next_opponent, ranking: @ranking) %> Défense</span>
             </div>
           </div>
           <!--/Graph Card-->
@@ -212,7 +226,7 @@
           <!--Graph Card-->
 
           <div class="border-b">
-            <h5 class="font-bold text-black">Mon attaque</h5>
+            <h5 class="font-bold text-black">Mon attaque (<%= team_ranking_attack(team: @team, ranking: @ranking) %>)</h5>
             <canvas id="chart3"></canvas>
             <div data-controller="charts--action-type-goals" data-charts--action-type-goals-canvas-id="chart3" data-charts--action-type-goals-params="team=NMF" data-charts--action-type-goals-chart-type="doughnut">
             </div>
@@ -221,7 +235,7 @@
 
           <!--Graph Card-->
           <div class="border-b mt-4">
-            <h5 class="font-bold text-black">Ma défense</h5>
+            <h5 class="font-bold text-black">Ma défense (<%= team_ranking_defense(team: @team, ranking: @ranking) %>)</h5>
             <canvas id="myDefense"></canvas>
             <div data-controller="charts--action-type-goals-against" data-charts--action-type-goals-against-canvas-id="myDefense" data-charts--action-type-goals-against-params="team=NMF" data-charts--action-type-goals-against-chart-type="doughnut">
             </div>
